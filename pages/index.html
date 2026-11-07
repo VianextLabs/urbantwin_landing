@@ -39,7 +39,98 @@
       <!-- Persona 1 -->
       <section id="monitoreo" class="panel" aria-labelledby="t-monitoreo">
         <h1 id="t-monitoreo" tabindex="-1">Monitoreo en Vivo</h1>
-        <!-- SECCIÓN: MONITOREO (Persona 1) -->
+        <p class="lead">Estado del tránsito de Lima y Callao en tiempo real (datos simulados).</p>
+
+<!-- Filtros -->
+<div class="mon-filters card" role="group" aria-label="Filtros del mapa">
+  <div class="field">
+    <label for="f-distrito">Distrito</label>
+    <select id="f-distrito">
+      <option value="todos">Todos</option>
+      <option>San Borja</option>
+      <option>Miraflores</option>
+      <option>Cercado de Lima</option>
+      <option>Callao</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="f-via">Vía arterial</label>
+    <select id="f-via"></select>
+  </div>
+
+  <label class="switch">
+    <input type="checkbox" id="capa-trafico-chk" role="switch" checked>
+    <span>Capa tráfico</span>
+  </label>
+
+  <label class="switch">
+    <input type="checkbox" id="capa-iot-chk" role="switch" checked>
+    <span>Capa IoT / cámaras</span>
+  </label>
+</div>
+
+<!-- Métricas rápidas -->
+<div class="mon-metrics">
+  <div class="card metric">
+    <span class="metric__label">Velocidad media</span>
+    <strong class="metric__value" id="m-vel">--</strong>
+  </div>
+  <div class="card metric">
+    <span class="metric__label">Flujo total</span>
+    <strong class="metric__value" id="m-flujo">--</strong>
+  </div>
+  <div class="card metric">
+    <span class="metric__label">Índice de congestión</span>
+    <strong class="metric__value" id="m-cong">--</strong>
+    <span class="metric__hint" id="m-cong-txt"></span>
+  </div>
+</div>
+
+<div class="mon-grid">
+  <!-- Mapa -->
+  <div class="card">
+    <h3 class="card__title">Mapa 3D interactivo · Lima / Callao</h3>
+    <svg id="mapa" viewBox="0 0 600 400" role="img" aria-labelledby="mapa-desc">
+      <title>Mapa simulado del tránsito en Lima y Callao</title>
+      <rect width="600" height="400" class="map-bg"></rect>
+      <g id="capa-trafico"></g>
+      <g id="capa-iot"></g>
+    </svg>
+    <p id="mapa-desc" class="sr-only">
+      Mapa esquemático con las vías principales. Cada vía muestra su nombre y su velocidad promedio.
+      El detalle también está disponible en la lista de incidentes.
+    </p>
+
+    <!-- Leyenda: color + patrón de línea + texto (doble codificación) -->
+    <ul class="legend" aria-label="Leyenda de tráfico">
+      <li><svg width="40" height="10" aria-hidden="true"><line x1="0" y1="5" x2="40" y2="5" class="road road--severa"/></svg> Congestión severa</li>
+      <li><svg width="40" height="10" aria-hidden="true"><line x1="0" y1="5" x2="40" y2="5" class="road road--lenta"/></svg> Tráfico lento</li>
+      <li><svg width="40" height="10" aria-hidden="true"><line x1="0" y1="5" x2="40" y2="5" class="road road--normal"/></svg> Flujo normal</li>
+      <li><svg width="40" height="10" aria-hidden="true"><line x1="0" y1="5" x2="40" y2="5" class="road road--libre"/></svg> Vía libre</li>
+    </ul>
+  </div>
+
+  <!-- Incidentes -->
+  <div class="card">
+    <div class="inc-head">
+      <h3 class="card__title">Incidentes activos</h3>
+      <span class="badge badge--high" id="inc-count" aria-live="polite">0 activos</span>
+    </div>
+
+    <div class="field">
+      <label for="f-sev">Filtrar por severidad</label>
+      <select id="f-sev">
+        <option value="todas">Todas</option>
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+      </select>
+    </div>
+
+    <ul id="inc-list" class="inc-list"></ul>
+  </div>
+</div>
       </section>
 
       <section id="simulador" class="panel" aria-labelledby="t-simulador">
