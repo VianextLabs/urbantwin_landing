@@ -8,13 +8,72 @@
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>UrbanTwin</h1>
-  </header>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <main>
-    <p>Landing en construcción....</p>
-  </main>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand__logo" aria-hidden="true">UT</span>
+      <div>
+        <strong>UrbanTwin</strong>
+        <small>Lima · Callao</small>
+      </div>
+    </div>
+
+    <p class="clock" id="reloj" aria-label="Hora del sistema">--:--:--</p>
+
+    <nav aria-label="Navegación principal">
+      <ul class="nav">
+        <li><a href="#monitoreo" data-section="monitoreo">Monitoreo en Vivo</a></li>
+        <li><a href="#simulador" data-section="simulador">Simulador de Desvíos</a></li>
+        <li><a href="#reportes" data-section="reportes">Reportes y Análisis</a></li>
+        <li><a href="#alertas" data-section="alertas">Alertas</a></li>
+        <li><a href="#aporte" data-section="aporte">Tu Aporte</a></li>
+        <li><a href="#contacto" data-section="contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="page">
+    <main id="contenido">
+
+      <!-- Persona 1 -->
+      <section id="monitoreo" class="panel" aria-labelledby="t-monitoreo">
+        <h1 id="t-monitoreo" tabindex="-1">Monitoreo en Vivo</h1>
+        <!-- SECCIÓN: MONITOREO (Persona 1) -->
+      </section>
+
+      <section id="simulador" class="panel" aria-labelledby="t-simulador">
+        <h2 id="t-simulador" tabindex="-1">Simulador de Desvíos</h2>
+        <!-- SECCIÓN: SIMULADOR (Persona 1) -->
+      </section>
+
+      <!-- Persona 2 -->
+      <section id="reportes" class="panel" aria-labelledby="t-reportes">
+        <h2 id="t-reportes" tabindex="-1">Reportes y Análisis</h2>
+        <!-- SECCIÓN: REPORTES (Persona 2) -->
+      </section>
+
+      <section id="alertas" class="panel" aria-labelledby="t-alertas">
+        <h2 id="t-alertas" tabindex="-1">Alertas y Asistente</h2>
+        <!-- SECCIÓN: ALERTAS (Persona 2) -->
+      </section>
+
+      <section id="aporte" class="panel" aria-labelledby="t-aporte">
+        <h2 id="t-aporte" tabindex="-1">Tu Aporte</h2>
+        <!-- SECCIÓN: TU APORTE (Persona 2) -->
+      </section>
+
+      <section id="contacto" class="panel" aria-labelledby="t-contacto">
+        <h2 id="t-contacto" tabindex="-1">Contacto</h2>
+        <!-- SECCIÓN: CONTACTO (Persona 2) -->
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 UrbanTwin · Vianext Labs · Lima, Perú</p>
+    </footer>
+  </div>
 
   <script src="../js/main.js" defer></script>
 </body>
