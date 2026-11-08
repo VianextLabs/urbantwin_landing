@@ -277,8 +277,158 @@
       <!-- Persona 2 -->
       <section id="reportes" class="panel" aria-labelledby="t-reportes">
         <h2 id="t-reportes" tabindex="-1">Reportes y Análisis</h2>
-        <!-- SECCIÓN: REPORTES (Persona 2) -->
-      </section>
+       <p class="lead">Consulta métricas consolidadas de la red vial y exporta informes técnicos de impacto.</p>
+<p class="rep-periodo">Período: <time id="rep-periodo" datetime="2026-09-22">22 Sep 2026 · 00:00–20:00</time></p>
+
+<!-- Pestañas -->
+<div class="tabs" role="tablist" aria-label="Secciones de reportes">
+  <button type="button" role="tab" id="tab-metricas" class="tab" aria-selected="true" aria-controls="panel-metricas" tabindex="0">Métricas</button>
+  <button type="button" role="tab" id="tab-analisis" class="tab" aria-selected="false" aria-controls="panel-analisis" tabindex="-1">Análisis</button>
+  <button type="button" role="tab" id="tab-exportacion" class="tab" aria-selected="false" aria-controls="panel-exportacion" tabindex="-1">Exportación</button>
+</div>
+
+<!-- Pestaña 1: Métricas (HU-07) -->
+<div id="panel-metricas" class="tabpanel" role="tabpanel" aria-labelledby="tab-metricas" data-hu="HU-07" tabindex="0">
+  <h3 class="card__title">Resumen ejecutivo</h3>
+  <div class="kpis">
+    <div class="card kpi">
+      <span class="metric__label">Vehículos monitoreados</span>
+      <strong class="kpi__value kpi--cyan" id="kpi-vehiculos">1.87M</strong>
+      <span class="metric__hint" id="kpi-vehiculos-var">▲ +3.2% vs ayer</span>
+      <progress class="kpi__bar" max="100" value="75" aria-label="Avance de vehículos monitoreados"></progress>
+    </div>
+    <div class="card kpi">
+      <span class="metric__label">Velocidad media</span>
+      <strong class="kpi__value kpi--orange" id="kpi-velocidad">28 km/h</strong>
+      <span class="metric__hint" id="kpi-velocidad-var">▼ −8.4 km/h en hora pico</span>
+      <progress class="kpi__bar" max="100" value="47" aria-label="Velocidad media respecto al máximo"></progress>
+    </div>
+    <div class="card kpi">
+      <span class="metric__label">Incidentes resueltos</span>
+      <strong class="kpi__value kpi--green" id="kpi-resueltos">18/24</strong>
+      <span class="metric__hint" id="kpi-resueltos-var">Tiempo resp. 7 min promedio</span>
+      <progress class="kpi__bar" max="100" value="75" aria-label="Porcentaje de incidentes resueltos"></progress>
+    </div>
+    <div class="card kpi">
+      <span class="metric__label">Índice de congestión</span>
+      <strong class="kpi__value kpi--red" id="kpi-congestion">63%</strong>
+      <span class="metric__hint" id="kpi-congestion-var">Nivel moderado-alto</span>
+      <progress class="kpi__bar" max="100" value="63" aria-label="Índice de congestión"></progress>
+    </div>
+  </div>
+
+  <div class="rep-grid">
+    <div class="card">
+      <h3 class="card__title">Incidentes por tipo</h3>
+      <table class="table">
+        <caption class="sr-only">Incidentes viales activos y resueltos por tipo</caption>
+        <thead>
+          <tr><th scope="col">Tipo</th><th scope="col">Activos</th><th scope="col">Resueltos</th></tr>
+        </thead>
+        <tbody id="rep-tabla-incidentes">
+          <tr><th scope="row">Accidentes viales</th><td>3</td><td>5</td></tr>
+          <tr><th scope="row">Obras en vía pública</th><td>2</td><td>4</td></tr>
+          <tr><th scope="row">Vehículos varados</th><td>1</td><td>4</td></tr>
+          <tr><th scope="row">Semáforos inoperativos</th><td>2</td><td>2</td></tr>
+          <tr><th scope="row">Eventos especiales</th><td>0</td><td>3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 class="card__title">Métricas de tiempo promedio</h3>
+      <dl class="impact" id="rep-tiempos">
+        <div><dt>Tiempo de primera respuesta</dt><dd>4.2 min</dd></div>
+        <div><dt>Tiempo de resolución parcial</dt><dd>18.7 min</dd></div>
+        <div><dt>Tiempo de resolución total</dt><dd>47.3 min</dd></div>
+        <div><dt>Tiempo de desvío activo</dt><dd>2.3 h</dd></div>
+        <div><dt>Demora media por incidente</dt><dd>11.2 min</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<!-- Pestaña 2: Análisis -->
+<div id="panel-analisis" class="tabpanel" role="tabpanel" aria-labelledby="tab-analisis" data-hu="HU-07" tabindex="0" hidden>
+  <div class="card">
+    <h3 class="card__title">Velocidad media por vía</h3>
+    <div class="field an-filter">
+      <label for="an-orden">Ordenar por</label>
+      <select id="an-orden">
+        <option value="velocidad-asc">Velocidad (menor a mayor)</option>
+        <option value="velocidad-desc">Velocidad (mayor a menor)</option>
+        <option value="nombre">Nombre</option>
+      </select>
+    </div>
+    <ul class="bars" id="an-barras" aria-label="Velocidad media por vía">
+      <li class="bar">
+        <span class="bar__name">Av. Brasil</span>
+        <span class="bar__track"><span class="bar__fill bar__fill--severa" style="--w:18%"></span></span>
+        <span class="bar__value">11 km/h · Congestión severa</span>
+      </li>
+      <li class="bar">
+        <span class="bar__name">Av. Javier Prado Este</span>
+        <span class="bar__track"><span class="bar__fill bar__fill--severa" style="--w:20%"></span></span>
+        <span class="bar__value">12 km/h · Congestión severa</span>
+      </li>
+      <li class="bar">
+        <span class="bar__name">Av. Arequipa</span>
+        <span class="bar__track"><span class="bar__fill bar__fill--lenta" style="--w:40%"></span></span>
+        <span class="bar__value">24 km/h · Tráfico lento</span>
+      </li>
+      <li class="bar">
+        <span class="bar__name">Av. Venezuela</span>
+        <span class="bar__track"><span class="bar__fill bar__fill--lenta" style="--w:43%"></span></span>
+        <span class="bar__value">26 km/h · Tráfico lento</span>
+      </li>
+      <li class="bar">
+        <span class="bar__name">Vía Expresa Sur</span>
+        <span class="bar__track"><span class="bar__fill bar__fill--normal" style="--w:77%"></span></span>
+        <span class="bar__value">46 km/h · Flujo normal</span>
+      </li>
+      <li class="bar">
+        <span class="bar__name">Av. Faucett</span>
+        <span class="bar__track"><span class="bar__fill bar__fill--libre" style="--w:97%"></span></span>
+        <span class="bar__value">58 km/h · Vía libre</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Pestaña 3: Exportación (HU-08) -->
+<div id="panel-exportacion" class="tabpanel" role="tabpanel" aria-labelledby="tab-exportacion" data-hu="HU-08" tabindex="0" hidden>
+  <form id="exp-form" class="card" novalidate>
+    <h3 class="card__title">Generar informe técnico de impacto vial</h3>
+
+    <div class="field">
+      <label for="exp-escenario">Simulación a reportar</label>
+      <select id="exp-escenario" required>
+        <option value="">Selecciona una simulación</option>
+        <option value="esc-1">Escenario 1 · Javier Prado Este (cierre parcial)</option>
+        <option value="esc-2">Escenario 2 · Javier Prado Este (cierre total)</option>
+        <option value="esc-3">Escenario 3 · Av. Arequipa (cierre parcial)</option>
+      </select>
+      <p class="field__error" id="exp-escenario-error" role="alert" hidden></p>
+    </div>
+
+    <fieldset class="field">
+      <legend>Formato de exportación</legend>
+      <label class="check"><input type="radio" name="formato" id="exp-pdf" value="pdf" checked> PDF</label>
+      <label class="check"><input type="radio" name="formato" id="exp-excel" value="csv"> Excel (CSV)</label>
+    </fieldset>
+
+    <fieldset class="field">
+      <legend>Contenido del informe</legend>
+      <label class="check"><input type="checkbox" name="contenido" id="exp-c-metricas" value="metricas" checked> Métricas ejecutivas</label>
+      <label class="check"><input type="checkbox" name="contenido" id="exp-c-incidentes" value="incidentes" checked> Incidentes por tipo</label>
+      <label class="check"><input type="checkbox" name="contenido" id="exp-c-escenarios" value="escenarios"> Comparación de escenarios</label>
+      <p class="field__error" id="exp-contenido-error" role="alert" hidden></p>
+    </fieldset>
+
+    <button type="submit" id="exp-generar" class="btn">Generar y exportar informe</button>
+    <p id="exp-estado" class="exp-estado" role="status" aria-live="polite"></p>
+  </form>
+</div>
 
       <section id="alertas" class="panel" aria-labelledby="t-alertas">
         <h2 id="t-alertas" tabindex="-1">Alertas y Asistente</h2>

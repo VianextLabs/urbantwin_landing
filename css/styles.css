@@ -363,6 +363,76 @@ progress {
 }
 
 /* ===== SECCIÓN: REPORTES (Persona 2) ===== */
+.rep-periodo { margin: 0 0 var(--space-2); color: var(--muted); font-size: var(--fs-small); }
+
+/* Pestañas */
+.tabs { display: flex; gap: var(--space-1); margin-bottom: var(--space-2); flex-wrap: wrap; }
+.tab {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font: inherit;
+  cursor: pointer;
+}
+.tab:hover { border-color: var(--accent); }
+.tab[aria-selected="true"] {
+  background: rgba(34, 211, 238, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+.tabpanel[hidden] { display: none; }
+
+/* KPIs */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.kpi { display: grid; gap: 4px; }
+.kpi__value { font-family: var(--font-mono); font-size: var(--fs-kpi); }
+.kpi--cyan { color: var(--accent); }
+.kpi--orange { color: var(--orange); }
+.kpi--green { color: var(--green); }
+.kpi--red { color: var(--red); }
+.kpi__bar { width: 100%; height: 8px; accent-color: var(--accent); }
+
+.rep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+/* Tabla */
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td {
+  padding: 0.6rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.table thead th { color: var(--muted); font-size: var(--fs-small); font-weight: 600; }
+.table tbody th { font-weight: 500; }
+.table td { font-family: var(--font-mono); }
+
+/* Gráfico de barras (doble codificación: color + texto) */
+.an-filter { max-width: 260px; margin-bottom: var(--space-2); }
+.bars { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.bar { display: grid; grid-template-columns: 180px 1fr 220px; gap: var(--space-1); align-items: center; }
+.bar__track { background: var(--surface-2); border-radius: 6px; height: 14px; overflow: hidden; }
+.bar__fill { display: block; height: 100%; width: var(--w); border-radius: 6px; }
+.bar__fill--severa { background: var(--red); }
+.bar__fill--lenta  { background: var(--orange); }
+.bar__fill--normal { background: var(--green); }
+.bar__fill--libre  { background: var(--accent); }
+.bar__value { font-size: var(--fs-small); color: var(--muted); }
+
+/* Exportación */
+#exp-form { display: grid; gap: var(--space-2); max-width: 560px; }
+.exp-estado { margin: 0; min-height: 1.5em; color: var(--green); font-weight: 600; }
+.exp-estado.is-error { color: var(--red); }
 
 /* ===== SECCIÓN: ALERTAS (Persona 2) ===== */
 
@@ -377,6 +447,8 @@ progress {
   main { padding: var(--space-2); }
   .mon-grid { grid-template-columns: 1fr; }
   .sim-layout { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .rep-grid { grid-template-columns: 1fr; }
 }
 
 /* Mobile: la barra lateral pasa a barra inferior */
@@ -402,4 +474,7 @@ progress {
   .mon-filters { flex-direction: column; align-items: stretch; }
   select { width: 100%; }
   .scenarios { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: 1fr; }
+  .bar { grid-template-columns: 1fr; gap: 4px; }
+  .tab { flex: 1; padding: 0.6rem 0.5rem; font-size: var(--fs-small); }
 }
