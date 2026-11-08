@@ -203,20 +203,37 @@
     </div>
   </div>
 
-  <!-- Columna derecha: mapa y resultados -->
+<!-- Columna derecha: mapa y resultados -->
   <div class="sim-main">
     <div class="card">
       <h3 class="card__title">Ejecución de simulación en 3D</h3>
-      <svg id="sim-mapa" viewBox="0 0 600 340" role="img" aria-labelledby="sim-mapa-desc">
-        <title>Vista del mapa con el cierre y las rutas alternas</title>
-        <rect width="600" height="340" class="map-bg"></rect>
-        <g id="sim-capa-vias"></g>
-        <g id="sim-capa-flujo"></g>
-      </svg>
+      
+      <!-- Iniciamos con display: none para que esté oculto al cargar la página -->
+      <div id="visor-3d-contenedor" style="display: none; position: relative; width: 100%; height: 280px; background: #070d1f; border-radius: 8px; overflow: hidden; align-items: center; justify-content: center; border: 1px solid rgba(0,242,254,0.3);">
+        <svg id="sim-mapa" viewBox="0 0 600 340" role="img" aria-labelledby="sim-mapa-desc" style="width: 100%; height: 100%;">
+          <title>Vista del mapa con el cierre y las rutas alternas</title>
+          <rect width="600" height="340" class="map-bg" fill="#070d1f"></rect>
+          <g id="sim-capa-vias">
+            <line x1="50" y1="170" x2="550" y2="170" stroke="#00f2fe" stroke-width="6" stroke-dasharray="10 6" opacity="0.8"/>
+            <line x1="300" y1="20" x2="300" y2="320" stroke="#ff5e62" stroke-width="6" opacity="0.8"/>
+            <line x1="120" y1="20" x2="480" y2="320" stroke="#ffa136" stroke-width="4" opacity="0.6"/>
+          </g>
+          <g id="sim-capa-flujo">
+            <circle cx="100" cy="170" r="8" fill="#00f2fe">
+              <animate attributeName="cx" values="50;550" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="300" cy="100" r="8" fill="#ff5e62">
+              <animate attributeName="cy" values="20;320" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+      </div>
+
       <p id="sim-mapa-desc" class="sr-only">
         Mapa esquemático donde se muestra la vía cerrada y las rutas alternas con la animación del flujo vehicular.
       </p>
-      <p id="sim-estado" class="sim-estado" aria-live="polite">Configura y ejecuta una simulación.</p>
+      
+      <p id="sim-estado" class="sim-estado" aria-live="polite" style="margin-top: 10px;">Configura y ejecuta una simulación para ver el modelo 3D.</p>
     </div>
 
     <!-- Resultados -->
