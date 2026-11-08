@@ -455,10 +455,36 @@ textarea {
   padding: 0.55rem 0.7rem;
   font: inherit;
   width: 100%;
+  box-sizing: border-box;
 }
-input[type="date"], input[type="time"] { color-scheme: dark; }
+
+/* Fecha y hora: normalizar para Safari / iPad */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 2.6rem;
+  display: block;
+  color-scheme: dark;
+}
+
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.4em;
+}
+
 textarea { resize: vertical; min-height: 5rem; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-1); }
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+.field-row .field { min-width: 0; }
+
 #al-form { display: grid; gap: var(--space-2); }
 
 /* Avisos programados */
@@ -664,6 +690,7 @@ input[type="tel"] {
   .al-layout { grid-template-columns: 1fr; }
   .ap-layout { grid-template-columns: 1fr; }
   .ct-layout { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
 }
 
 /* Mobile: la barra lateral pasa a barra inferior */
