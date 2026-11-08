@@ -565,7 +565,81 @@
 
       <section id="aporte" class="panel" aria-labelledby="t-aporte">
         <h2 id="t-aporte" tabindex="-1">Tu Aporte</h2>
-        <!-- SECCIÓN: TU APORTE (Persona 2) -->
+        <p class="lead">Reporta problemas viales y ayuda a otros usuarios validando la fluidez de las rutas alternas.</p>
+
+<div class="ap-layout">
+
+  <!-- HU-11: Portal ciudadano de reporte de vías -->
+  <div class="ap-col" data-hu="HU-11">
+    <form id="ap-form" class="card" novalidate>
+      <h3 class="card__title">Reportar un problema vial</h3>
+
+      <div class="field">
+        <label for="ap-tipo">Tipo de problema</label>
+        <select id="ap-tipo" required>
+          <option value="">Selecciona un tipo</option>
+          <option value="trafico">Tráfico congestionado</option>
+          <option value="bache">Bache o daño en la pista</option>
+          <option value="semaforo">Semáforo malogrado</option>
+          <option value="obra">Obra sin señalizar</option>
+          <option value="inseguridad">Paradero inseguro</option>
+        </select>
+        <p class="field__error" id="ap-tipo-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ap-via">Vía o referencia</label>
+        <input type="text" id="ap-via" maxlength="80" required
+               aria-describedby="ap-via-ayuda ap-via-error" placeholder="Ej.: Av. Brasil cuadra 15">
+        <small id="ap-via-ayuda" class="field__help">Indica la avenida y una referencia cercana.</small>
+        <p class="field__error" id="ap-via-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ap-desc">Descripción</label>
+        <textarea id="ap-desc" rows="3" maxlength="200" required
+                  aria-describedby="ap-desc-ayuda ap-desc-error"></textarea>
+        <small id="ap-desc-ayuda" class="field__help"><span id="ap-contador">0</span>/200 caracteres (mínimo 10)</small>
+        <p class="field__error" id="ap-desc-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ap-foto">Foto (opcional)</label>
+        <input type="file" id="ap-foto" accept="image/*" aria-describedby="ap-foto-ayuda ap-foto-error">
+        <small id="ap-foto-ayuda" class="field__help">Imagen JPG o PNG de hasta 2 MB.</small>
+        <p class="field__error" id="ap-foto-error" role="alert" hidden></p>
+        <img id="ap-foto-prev" class="ap-prev" alt="Vista previa de la foto seleccionada" hidden>
+      </div>
+
+      <div class="field">
+        <span class="field__label">Ubicación</span>
+        <button type="button" id="ap-ubicacion" class="btn btn--ghost">Usar mi ubicación actual</button>
+        <p id="ap-ubicacion-txt" class="field__help" aria-live="polite">Ubicación no definida.</p>
+        <p class="field__error" id="ap-ubicacion-error" role="alert" hidden></p>
+      </div>
+
+      <button type="submit" id="ap-enviar" class="btn">Enviar reporte</button>
+      <p id="ap-estado" class="exp-estado" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="card">
+      <div class="inc-head">
+        <h3 class="card__title">Mis reportes</h3>
+        <span class="badge badge--low" id="ap-count" aria-live="polite">0 reportes</span>
+      </div>
+      <ul id="ap-lista" class="al-lista">
+        <li class="inc-empty" id="ap-vacio">Aún no has enviado reportes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HU-12: Validador comunitario de rutas alternas -->
+  <div class="ap-col" data-hu="HU-12">
+    <div class="card">
+      <h3 class="card__title">Validar rutas alternas</h3>
+      <p class="field__help">Califica la fluidez de las rutas sugeridas para ayudar a otros pasajeros.</p>
+
+      <ul id="ruta-lista" class="ruta-lista">
       </section>
 
       <section id="contacto" class="panel" aria-labelledby="t-contacto">

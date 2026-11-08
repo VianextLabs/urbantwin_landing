@@ -527,6 +527,88 @@ textarea { resize: vertical; min-height: 5rem; }
 .push-item p { margin: 2px 0 0; }
 
 /* ===== SECCIÓN: TU APORTE (Persona 2) ===== */
+.ap-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  align-items: start;
+}
+.ap-col { display: grid; gap: var(--space-2); }
+#ap-form { display: grid; gap: var(--space-2); }
+
+.field__label { font-size: var(--fs-small); color: var(--muted); }
+
+input[type="file"] {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  font: inherit;
+  width: 100%;
+}
+.ap-prev { max-width: 100%; max-height: 180px; border-radius: 8px; border: 1px solid var(--border); margin-top: var(--space-1); }
+.ap-prev[hidden] { display: none; }
+
+/* Reportes enviados */
+.ap-item--resuelto { border-left-color: var(--green); }
+.ap-item--revision { border-left-color: var(--orange); }
+
+/* Rutas a validar */
+.ruta-lista { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; gap: var(--space-2); }
+.ruta {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  display: grid;
+  gap: var(--space-1);
+}
+.ruta__top { display: flex; justify-content: space-between; align-items: center; gap: var(--space-1); }
+.ruta__score { margin: 0; color: var(--muted); font-size: var(--fs-small); }
+.ruta__score output { color: var(--accent); font-family: var(--font-mono); font-weight: 700; }
+
+/* Calificación por estrellas (radios accesibles con teclado) */
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.rating legend { width: 100%; float: left; margin-bottom: 4px; }
+.rating input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.rating label {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 600;
+}
+.rating label::after { content: "★"; margin-left: 2px; }
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(34, 211, 238, 0.15);
+}
+.rating input:focus-visible + label {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
 
 /* ===== SECCIÓN: CONTACTO (Persona 2) ===== */
 
@@ -540,6 +622,7 @@ textarea { resize: vertical; min-height: 5rem; }
   .kpis { grid-template-columns: repeat(2, 1fr); }
   .rep-grid { grid-template-columns: 1fr; }
   .al-layout { grid-template-columns: 1fr; }
+  .ap-layout { grid-template-columns: 1fr; }
 }
 
 /* Mobile: la barra lateral pasa a barra inferior */
