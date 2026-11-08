@@ -611,7 +611,47 @@ input[type="file"] {
 }
 
 /* ===== SECCIÓN: CONTACTO (Persona 2) ===== */
+.ct-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  align-items: start;
+}
+.ct-col { display: grid; gap: var(--space-2); }
+#ct-form { display: grid; gap: var(--space-2); }
 
+input[type="email"],
+input[type="tel"] {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  width: 100%;
+}
+
+/* Asesores */
+.asesores { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.asesor { display: grid; gap: var(--space-1); }
+.asesor__head { display: flex; gap: var(--space-2); align-items: center; }
+.asesor h4 { margin: 0; font-size: 1.05rem; }
+.asesor__rol { margin: 2px 0 6px; color: var(--muted); font-size: var(--fs-small); }
+.asesor__esp { margin: 0; }
+.asesor__datos { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; color: var(--muted); font-size: var(--fs-small); }
+.asesor__acciones { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+
+.avatar {
+  display: grid; place-items: center;
+  flex: none;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface-2);
+  color: var(--accent);
+  font-weight: 700;
+}
+.avatar--purple { border-color: var(--purple); color: var(--purple); }
 /* ===== RESPONSIVE ===== */
 /* Tablet */
 @media (max-width: 1024px) {
@@ -623,6 +663,7 @@ input[type="file"] {
   .rep-grid { grid-template-columns: 1fr; }
   .al-layout { grid-template-columns: 1fr; }
   .ap-layout { grid-template-columns: 1fr; }
+  .ct-layout { grid-template-columns: 1fr; }
 }
 
 /* Mobile: la barra lateral pasa a barra inferior */

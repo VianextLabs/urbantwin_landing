@@ -644,7 +644,108 @@
 
       <section id="contacto" class="panel" aria-labelledby="t-contacto">
         <h2 id="t-contacto" tabindex="-1">Contacto</h2>
-        <!-- SECCIÓN: CONTACTO (Persona 2) -->
+        <p class="lead">Conversa con un asesor especialista o envíanos una solicitud de información sobre UrbanTwin.</p>
+
+<div class="ct-layout">
+
+  <!-- Directorio de asesores -->
+  <div class="ct-col">
+    <h3 class="card__title">Directorio de asesores</h3>
+    <ul class="asesores" id="ct-asesores">
+
+      <li class="card asesor" data-asesor="carlos">
+        <div class="asesor__head">
+          <span class="avatar" aria-hidden="true">CM</span>
+          <div>
+            <h4>Ing. Carlos Mendoza Ríos</h4>
+            <p class="asesor__rol">Asesor Senior de Movilidad Urbana</p>
+            <span class="badge badge--low" id="ct-carlos-estado">● Disponible</span>
+          </div>
+        </div>
+        <p class="asesor__esp"><strong>Especialidad:</strong> Ingeniería de tránsito · Gemelos digitales</p>
+        <ul class="asesor__datos">
+          <li>Correo: <a href="mailto:c.mendoza@urbantwin.pe">c.mendoza@urbantwin.pe</a></li>
+          <li>Teléfono: <a href="tel:+5112345678">+51 1 234-5678</a></li>
+        </ul>
+        <div class="asesor__acciones">
+          <button type="button" class="btn btn--small" data-contactar="carlos">Enviar mensaje</button>
+          <button type="button" class="btn btn--ghost btn--small" data-agendar="carlos">Agendar</button>
+        </div>
+      </li>
+
+      <li class="card asesor" data-asesor="valeria">
+        <div class="asesor__head">
+          <span class="avatar avatar--purple" aria-hidden="true">VT</span>
+          <div>
+            <h4>Dra. Valeria Torres Soto</h4>
+            <p class="asesor__rol">Asesora en Smart City e IoT</p>
+            <span class="badge badge--high" id="ct-valeria-estado">● Ocupada</span>
+          </div>
+        </div>
+        <p class="asesor__esp"><strong>Especialidad:</strong> Sensórica urbana · Análisis de datos viales</p>
+        <ul class="asesor__datos">
+          <li>Correo: <a href="mailto:v.torres@urbantwin.pe">v.torres@urbantwin.pe</a></li>
+          <li>Teléfono: <a href="tel:+5112345679">+51 1 234-5679</a></li>
+        </ul>
+        <div class="asesor__acciones">
+          <button type="button" class="btn btn--small" data-contactar="valeria">Enviar mensaje</button>
+          <button type="button" class="btn btn--ghost btn--small" data-agendar="valeria">Agendar</button>
+        </div>
+      </li>
+
+    </ul>
+    <p id="ct-asesor-estado" class="exp-estado" role="status" aria-live="polite"></p>
+  </div>
+
+  <!-- Solicitud de información -->
+  <div class="ct-col">
+    <form id="ct-form" class="card" novalidate>
+      <h3 class="card__title">Solicitar información</h3>
+
+      <div class="field">
+        <label for="ct-nombre">Nombre completo</label>
+        <input type="text" id="ct-nombre" autocomplete="name" required aria-describedby="ct-nombre-error">
+        <p class="field__error" id="ct-nombre-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ct-correo">Correo electrónico</label>
+        <input type="email" id="ct-correo" autocomplete="email" required aria-describedby="ct-correo-error">
+        <p class="field__error" id="ct-correo-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ct-celular">Celular</label>
+        <input type="tel" id="ct-celular" autocomplete="tel" inputmode="numeric" maxlength="9"
+               placeholder="9 dígitos" required aria-describedby="ct-celular-ayuda ct-celular-error">
+        <small id="ct-celular-ayuda" class="field__help">Número peruano de 9 dígitos que empieza con 9.</small>
+        <p class="field__error" id="ct-celular-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ct-perfil">Soy…</label>
+        <select id="ct-perfil" required>
+          <option value="">Selecciona tu perfil</option>
+          <option value="autoridad">Autoridad o planificador urbano</option>
+          <option value="conductor">Conductor de transporte público</option>
+          <option value="ciudadano">Pasajero o ciudadano</option>
+        </select>
+        <p class="field__error" id="ct-perfil-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="ct-mensaje">Mensaje</label>
+        <textarea id="ct-mensaje" rows="4" maxlength="300" required
+                  aria-describedby="ct-mensaje-ayuda ct-mensaje-error"></textarea>
+        <small id="ct-mensaje-ayuda" class="field__help"><span id="ct-contador">0</span>/300 caracteres</small>
+        <p class="field__error" id="ct-mensaje-error" role="alert" hidden></p>
+      </div>
+
+      <button type="submit" id="ct-enviar" class="btn">Enviar solicitud</button>
+      <p id="ct-estado" class="exp-estado" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
       </section>
 
     </main>
