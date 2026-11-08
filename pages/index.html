@@ -429,10 +429,138 @@
     <p id="exp-estado" class="exp-estado" role="status" aria-live="polite"></p>
   </form>
 </div>
-
+</section>
       <section id="alertas" class="panel" aria-labelledby="t-alertas">
         <h2 id="t-alertas" tabindex="-1">Alertas y Asistente</h2>
-        <!-- SECCIÓN: ALERTAS (Persona 2) -->
+        <p class="lead">Programa avisos preventivos para la población y consulta rutas alternas con el asistente virtual.</p>
+        <div class="al-layout">
+
+  <!-- HU-09: Despacho de alertas preventivas -->
+  <div class="al-col" data-hu="HU-09">
+    <form id="al-form" class="card" novalidate>
+      <h3 class="card__title">Centro de despacho de alertas</h3>
+
+      <div class="field">
+        <label for="al-tipo">Tipo de evento</label>
+        <select id="al-tipo" required>
+          <option value="">Selecciona un tipo</option>
+          <option value="obra">Obra programada</option>
+          <option value="desvio">Desvío aprobado</option>
+          <option value="emergencia">Emergencia vial</option>
+          <option value="evento">Evento especial</option>
+        </select>
+        <p class="field__error" id="al-tipo-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="al-distrito">Zona afectada</label>
+        <select id="al-distrito" required>
+          <option value="">Selecciona un distrito</option>
+          <option>San Borja</option>
+          <option>Miraflores</option>
+          <option>Cercado de Lima</option>
+          <option>Callao</option>
+        </select>
+        <p class="field__error" id="al-distrito-error" role="alert" hidden></p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="al-fecha">Fecha</label>
+          <input type="date" id="al-fecha" required>
+          <p class="field__error" id="al-fecha-error" role="alert" hidden></p>
+        </div>
+        <div class="field">
+          <label for="al-hora">Hora de inicio</label>
+          <input type="time" id="al-hora" required>
+          <p class="field__error" id="al-hora-error" role="alert" hidden></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="al-mensaje">Mensaje para la población</label>
+        <textarea id="al-mensaje" rows="3" maxlength="160" required
+                  aria-describedby="al-mensaje-ayuda al-mensaje-error"></textarea>
+        <small id="al-mensaje-ayuda" class="field__help"><span id="al-contador">0</span>/160 caracteres</small>
+        <p class="field__error" id="al-mensaje-error" role="alert" hidden></p>
+      </div>
+
+      <fieldset class="field">
+        <legend>Canales de envío</legend>
+        <label class="check"><input type="checkbox" name="canal" id="al-canal-push" value="push" checked> Notificación push</label>
+        <label class="check"><input type="checkbox" name="canal" id="al-canal-chat" value="chat"> Asistente virtual</label>
+        <label class="check"><input type="checkbox" name="canal" id="al-canal-panel" value="panel"> Paneles en paraderos</label>
+        <p class="field__error" id="al-canal-error" role="alert" hidden></p>
+      </fieldset>
+
+      <button type="submit" id="al-programar" class="btn">Programar aviso</button>
+      <p id="al-estado" class="exp-estado" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="card">
+      <div class="inc-head">
+        <h3 class="card__title">Avisos programados</h3>
+        <span class="badge badge--low" id="al-count" aria-live="polite">0 avisos</span>
+      </div>
+      <ul id="al-lista" class="al-lista">
+        <li class="inc-empty" id="al-vacio">Aún no hay avisos programados.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HU-10: Asistente virtual y notificaciones push -->
+  <div class="al-col" data-hu="HU-10">
+    <div class="card">
+      <h3 class="card__title">Asistente virtual de rutas</h3>
+
+      <div class="field">
+        <label for="bot-vehiculo">Tipo de unidad</label>
+        <select id="bot-vehiculo">
+          <option value="pasajero">Soy pasajero</option>
+          <option value="bus">Bus / Microbús</option>
+          <option value="coaster">Cúster / Coaster</option>
+        </select>
+      </div>
+
+      <div id="bot-log" class="chat" role="log" aria-live="polite" aria-label="Conversación con el asistente" tabindex="0">
+        <div class="msg msg--bot">
+          <span class="msg__who">Asistente</span>
+          <p>Hola, puedo ayudarte con rutas alternas ante cierres y desvíos. ¿Por qué vía sueles viajar?</p>
+        </div>
+      </div>
+
+      <div class="chips" role="group" aria-label="Consultas rápidas">
+        <button type="button" class="chip" data-consulta="Av. Javier Prado Este">Javier Prado Este</button>
+        <button type="button" class="chip" data-consulta="Av. Arequipa">Av. Arequipa</button>
+        <button type="button" class="chip" data-consulta="Av. Brasil">Av. Brasil</button>
+        <button type="button" class="chip" data-consulta="Vía Expresa Sur">Vía Expresa Sur</button>
+      </div>
+
+      <form id="bot-form" class="chat-form" novalidate>
+        <label for="bot-input" class="sr-only">Escribe tu consulta</label>
+        <input type="text" id="bot-input" placeholder="Ej.: ¿Qué ruta alterna tomo por Javier Prado?" autocomplete="off" maxlength="120">
+        <button type="submit" id="bot-enviar" class="btn">Enviar</button>
+      </form>
+      <p class="field__error" id="bot-error" role="alert" hidden></p>
+    </div>
+
+    <div class="card">
+      <h3 class="card__title">Notificaciones push</h3>
+
+      <label class="switch">
+        <input type="checkbox" id="push-chk" role="switch">
+        <span>Recibir alertas en mi dispositivo</span>
+      </label>
+      <p id="push-estado" class="field__help" aria-live="polite">Las notificaciones están desactivadas.</p>
+
+      <button type="button" id="push-simular" class="btn btn--ghost" disabled>Simular notificación entrante</button>
+
+      <ul id="push-lista" class="push-lista" aria-label="Notificaciones recibidas">
+        <li class="inc-empty" id="push-vacio">No has recibido notificaciones.</li>
+      </ul>
+    </div>
+  </div>
+</div>
       </section>
 
       <section id="aporte" class="panel" aria-labelledby="t-aporte">

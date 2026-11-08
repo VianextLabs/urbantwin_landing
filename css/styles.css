@@ -435,6 +435,96 @@ progress {
 .exp-estado.is-error { color: var(--red); }
 
 /* ===== SECCIÓN: ALERTAS (Persona 2) ===== */
+.al-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  align-items: start;
+}
+.al-col { display: grid; gap: var(--space-2); }
+
+/* Campos de texto reutilizables */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  width: 100%;
+}
+input[type="date"], input[type="time"] { color-scheme: dark; }
+textarea { resize: vertical; min-height: 5rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-1); }
+#al-form { display: grid; gap: var(--space-2); }
+
+/* Avisos programados */
+.al-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.al-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--orange);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  display: grid;
+  gap: 4px;
+}
+.al-item--emergencia { border-left-color: var(--red); }
+.al-item--evento { border-left-color: var(--purple); }
+.al-item__top { display: flex; justify-content: space-between; gap: var(--space-1); color: var(--muted); font-size: var(--fs-small); }
+.al-item__msg { margin: 0; }
+.al-item__canales { margin: 0; color: var(--muted); font-size: var(--fs-small); }
+.btn--small { padding: 0.35rem 0.7rem; font-size: var(--fs-small); justify-self: start; }
+
+/* Chat */
+.chat {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-1);
+  height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: var(--space-1) 0;
+}
+.msg { max-width: 85%; padding: 0.5rem 0.75rem; border-radius: 10px; }
+.msg p { margin: 2px 0 0; }
+.msg__who { font-size: var(--fs-small); color: var(--muted); font-weight: 600; }
+.msg--bot  { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--border); }
+.msg--user { align-self: flex-end; background: rgba(34, 211, 238, 0.15); border: 1px solid var(--accent); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--space-1); }
+.chip {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  font-size: var(--fs-small);
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+.chat-form { display: flex; gap: var(--space-1); }
+.chat-form input { flex: 1; }
+
+/* Push */
+.push-lista { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; gap: 0.6rem; max-height: 240px; overflow-y: auto; }
+.push-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+.push-item__top { display: flex; justify-content: space-between; color: var(--muted); font-size: var(--fs-small); }
+.push-item p { margin: 2px 0 0; }
 
 /* ===== SECCIÓN: TU APORTE (Persona 2) ===== */
 
@@ -449,6 +539,7 @@ progress {
   .sim-layout { grid-template-columns: 1fr; }
   .kpis { grid-template-columns: repeat(2, 1fr); }
   .rep-grid { grid-template-columns: 1fr; }
+  .al-layout { grid-template-columns: 1fr; }
 }
 
 /* Mobile: la barra lateral pasa a barra inferior */
@@ -477,4 +568,8 @@ progress {
   .kpis { grid-template-columns: 1fr; }
   .bar { grid-template-columns: 1fr; gap: 4px; }
   .tab { flex: 1; padding: 0.6rem 0.5rem; font-size: var(--fs-small); }
+    .field-row { grid-template-columns: 1fr; }
+  .chat { height: 240px; }
+  .msg { max-width: 95%; }
+  .chat-form { flex-direction: column; }
 }
