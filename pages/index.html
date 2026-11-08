@@ -135,7 +135,143 @@
 
       <section id="simulador" class="panel" aria-labelledby="t-simulador">
         <h2 id="t-simulador" tabindex="-1">Simulador de Desvíos</h2>
-        <!-- SECCIÓN: SIMULADOR (Persona 1) -->
+        <p class="lead">Configura un cierre vial y evalúa su impacto antes de aplicarlo en la calle real.</p>
+
+<div class="sim-layout">
+
+  <!-- Columna izquierda: configuración -->
+  <div class="sim-side">
+    <form id="sim-form" class="card" novalidate>
+      <h3 class="card__title">Configuración de cierre</h3>
+
+      <div class="field">
+        <label for="sim-via">Vía afectada</label>
+        <select id="sim-via" required>
+          <option value="">Selecciona una vía</option>
+          <option value="javier-prado">Av. Javier Prado Este</option>
+          <option value="arequipa">Av. Arequipa</option>
+          <option value="via-expresa">Vía Expresa Sur</option>
+          <option value="faucett">Av. Faucett</option>
+          <option value="venezuela">Av. Venezuela</option>
+          <option value="brasil">Av. Brasil</option>
+        </select>
+        <p class="field__error" id="sim-via-error" role="alert" hidden></p>
+      </div>
+
+      <fieldset class="field">
+        <legend>Tipo de cierre</legend>
+        <div class="toggle-group">
+          <button type="button" id="sim-parcial" class="toggle" aria-pressed="true">Parcial</button>
+          <button type="button" id="sim-total" class="toggle" aria-pressed="false">Total</button>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="sim-duracion">
+          Duración estimada: <output id="sim-duracion-txt" for="sim-duracion">4 horas</output>
+        </label>
+        <input type="range" id="sim-duracion" min="1" max="12" value="4" step="1">
+      </div>
+
+      <div class="field">
+        <label for="sim-aforo">Aforo vehicular (veh/h)</label>
+        <input type="number" id="sim-aforo" min="100" max="10000" step="100" value="3000"
+               aria-describedby="sim-aforo-ayuda sim-aforo-error">
+        <small id="sim-aforo-ayuda" class="field__help">Entre 100 y 10 000 vehículos por hora.</small>
+        <p class="field__error" id="sim-aforo-error" role="alert" hidden></p>
+      </div>
+
+      <fieldset class="field">
+        <legend>Rutas alternas</legend>
+        <label class="check"><input type="checkbox" id="sim-ruta-1" name="ruta" value="arequipa" checked> Av. Arequipa</label>
+        <label class="check"><input type="checkbox" id="sim-ruta-2" name="ruta" value="via-expresa" checked> Vía Expresa Sur</label>
+        <label class="check"><input type="checkbox" id="sim-ruta-3" name="ruta" value="venezuela"> Av. Venezuela</label>
+        <p class="field__error" id="sim-rutas-error" role="alert" hidden></p>
+      </fieldset>
+
+      <button type="submit" id="sim-ejecutar" class="btn btn--block">Ejecutar simulación</button>
+    </form>
+
+    <div class="card">
+      <h3 class="card__title">Parámetros de impacto</h3>
+      <dl class="impact">
+        <div><dt>Radio de análisis</dt><dd id="imp-radio">5 km</dd></div>
+        <div><dt>Hora pico incluida</dt><dd id="imp-hora">Sí (07:00–09:00)</dd></div>
+        <div><dt>Rutas alternas</dt><dd id="imp-rutas">2 calculadas</dd></div>
+        <div><dt>Vehículos impactados</dt><dd id="imp-vehiculos">~12 400 veh</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Columna derecha: mapa y resultados -->
+  <div class="sim-main">
+    <div class="card">
+      <h3 class="card__title">Ejecución de simulación en 3D</h3>
+      <svg id="sim-mapa" viewBox="0 0 600 340" role="img" aria-labelledby="sim-mapa-desc">
+        <title>Vista del mapa con el cierre y las rutas alternas</title>
+        <rect width="600" height="340" class="map-bg"></rect>
+        <g id="sim-capa-vias"></g>
+        <g id="sim-capa-flujo"></g>
+      </svg>
+      <p id="sim-mapa-desc" class="sr-only">
+        Mapa esquemático donde se muestra la vía cerrada y las rutas alternas con la animación del flujo vehicular.
+      </p>
+      <p id="sim-estado" class="sim-estado" aria-live="polite">Configura y ejecuta una simulación.</p>
+    </div>
+
+    <!-- Resultados -->
+    <div class="card" id="sim-resultados" aria-live="polite">
+      <h3 class="card__title">Comparación de escenarios</h3>
+      <p id="sim-vacio" class="inc-empty">Aún no hay resultados. Ejecuta una simulación para compararlos.</p>
+
+      <div id="sim-comparativa" class="scenarios" hidden>
+        <article class="scenario" id="esc-1">
+          <header>
+            <h4>Escenario 1</h4>
+            <span class="badge" id="esc-1-badge">--</span>
+          </header>
+          <dl>
+            <div><dt>Retraso promedio</dt><dd id="esc-1-retraso">--</dd></div>
+            <div><dt>Vehículos desviados</dt><dd id="esc-1-desviados">--</dd></div>
+            <div><dt>Nivel de servicio</dt><dd id="esc-1-nivel">--</dd></div>
+          </dl>
+        </article>
+
+        <article class="scenario" id="esc-2">
+          <header>
+            <h4>Escenario 2</h4>
+            <span class="badge" id="esc-2-badge">--</span>
+          </header>
+          <dl>
+            <div><dt>Retraso promedio</dt><dd id="esc-2-retraso">--</dd></div>
+            <div><dt>Vehículos desviados</dt><dd id="esc-2-desviados">--</dd></div>
+            <div><dt>Nivel de servicio</dt><dd id="esc-2-nivel">--</dd></div>
+          </dl>
+        </article>
+
+        <article class="scenario" id="esc-3">
+          <header>
+            <h4>Escenario 3</h4>
+            <span class="badge" id="esc-3-badge">--</span>
+          </header>
+          <dl>
+            <div><dt>Retraso promedio</dt><dd id="esc-3-retraso">--</dd></div>
+            <div><dt>Vehículos desviados</dt><dd id="esc-3-desviados">--</dd></div>
+            <div><dt>Nivel de servicio</dt><dd id="esc-3-nivel">--</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de carga -->
+<dialog id="sim-modal" aria-labelledby="sim-modal-titulo">
+  <h3 id="sim-modal-titulo">Procesando simulación</h3>
+  <p id="sim-modal-texto">Renderizando el flujo vehicular en 3D…</p>
+  <progress id="sim-progreso" max="100" value="0" aria-label="Progreso de la simulación"></progress>
+  <button type="button" id="sim-cancelar" class="btn btn--ghost">Cancelar</button>
+</dialog>
       </section>
 
       <!-- Persona 2 -->
